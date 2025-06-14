@@ -14,7 +14,7 @@
 int counter = 0, angle4 = 0;
 bool lastButtonState = LOW;
 
-int angle1 = 90, angle2 = 35, angle3 = 90;
+int angle1 = 61, angle2 = 11, angle3 = 71;
 
 Servo s0, s1, s2, s3, s4;
 
@@ -30,9 +30,9 @@ void setup() {
   s4.attach(s4pin);
 
   s0.write(90);
-  s1.write(90);
-  s2.write(90);
-  s3.write(90);
+  s1.write(angle1);
+  s2.write(angle2);
+  s3.write(angle3);
   s4.write(0);
 
   delay(500);
@@ -61,7 +61,7 @@ void loop() {
   }
   lastButtonState = buttonState;
   //Serial.println(counter);
-  Serial.println(claw);
+  Serial.println("Claw angle: " + String(angle4));
 
   switch (counter) {
     case 0: ServoControl1(vrx); break;
@@ -80,7 +80,7 @@ void ServoControl1(int vrx) {
   }
   angle1 = constrain(angle1, 51, 130);
   s1.write(angle1);
-  Serial.println(angle1);
+  //Serial.println("Servo 1: "+ String(angle1));
 }
 
 void ServoControl2(int vrx) {
@@ -93,7 +93,7 @@ void ServoControl2(int vrx) {
   }
   angle2 = constrain(angle2, 0, 130);
   s2.write(angle2);
-  Serial.println(angle2);
+  //Serial.println("Servo 2: "+ String(angle2));
 }
 
 void ServoControl3(int vrx) {
@@ -106,5 +106,5 @@ void ServoControl3(int vrx) {
   }
   angle3 = constrain(angle3, 0, 130);
   s3.write(angle3);
-  Serial.println(angle3);
+  //Serial.println("Servo 3: "+ String(angle3));
 }
