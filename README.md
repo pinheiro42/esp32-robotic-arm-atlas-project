@@ -5,7 +5,7 @@ A joystick-controlled robotic arm using an ESP32 and servo motors. Rotate and po
 
 A simple yet powerful robotic arm controller built with the ESP32, joystick, and 5 servo motors. The system allows you to control multiple joints of a robotic arm interactively using a joystick. Each press of the joystick's button cycles through different servo joints.
 
-## 🤖 Features
+## Features
 
 - Control 5 servo motors with just a joystick and ESP32
 - Joystick button toggles control between joints
@@ -13,7 +13,7 @@ A simple yet powerful robotic arm controller built with the ESP32, joystick, and
 - Adjustable claw controlled with a potentiometer
 - Console feedback for angle debugging via Serial Monitor
 
-## 🧰 Hardware Requirements
+## Hardware Requirements
 
 - ESP32 development board
 - 5x servo motors (4 180º SG90s and 1 360º SG90 for the base) 
@@ -22,7 +22,7 @@ A simple yet powerful robotic arm controller built with the ESP32, joystick, and
 - External power supply for servos (recommended)
 - Jumper wires and breadboard
 
-## 🔌 Pin Configuration
+## Pin Configuration
 
 | Component       | ESP32 Pin |
 |----------------|-----------|
@@ -36,7 +36,7 @@ A simple yet powerful robotic arm controller built with the ESP32, joystick, and
 | Joystick Button (SW) | 32   |
 | Claw Potentiometer  | 14    |
 
-## ⚙️ How It Works
+## How It Works
 
 - **VRX and VRY** control the movement along two axes.
 - **Joystick Button** (`SW`) toggles between controlling servo 1, 2, or 3.
