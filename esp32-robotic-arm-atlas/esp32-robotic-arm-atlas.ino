@@ -1,24 +1,30 @@
 #include <ESP32Servo.h>
 
-#define s0pin 23
+#define s0pin 5
 #define s1pin 18
 #define s2pin 19
 #define s3pin 15
-#define s4pin 21
+#define s4pin 4
 
 #define vrx_pin 34
 #define vry_pin 35
 #define sw_pin 32
+
+#define vrx_pin2 27
+#define vry_pin2 26
+#define sw_pin2 25
+
 #define claw_pin 14
 
-int angle1 = 61, angle2 = 11, angle3 = 71, angle4 = 95;
+int angle1 = 61, angle2 = 11, angle3 = 90
+, angle4 = 95;
 
-float posX = 6.0;   // Initial X position (adjustable)
-float posY = 0.0;    // Initial Y position (adjustable)
+float posX = 6.0;
+float posY = 0.0;    
 
-float L1 = 9.44;     // Length of first arm segment
-float L2 = 6.44;     // Length of second arm segment
-float L3 = 7.92;     // Length of third segment (not used in IK)
+float L1 = 9.44;   
+float L2 = 6.44;    
+float L3 = 7.92;    
 
 Servo s0, s1, s2, s3, s4;
 
@@ -34,8 +40,6 @@ void setup() {
   s4.attach(s4pin);
 
   s0.write(90);
-  // s1.write(angle1);
-  // s2.write(angle2);
   s3.write(angle3);
   s4.write(angle4);
 
@@ -47,6 +51,25 @@ void loop() {
   int vry = analogRead(vry_pin);
   int claw = analogRead(claw_pin);
 
+  int vrx2 = analogRead(vrx_pin2);
+  int vry2 = analogRead(vry_pin2);
+
+  if(vrx2 > 2000){
+    angle3 += 1;
+  } else if(vrx2 < 1400){
+    angle3 -= 1;
+  }
+
+  angle3 = constrain(angle3, 0, 180);
+  s3.write(angle3);
+
+  if (vry2 > 2000) {
+    s0.write(60);
+  } else if (vry2 < 1200) {
+    s0.write(130);
+  } else {
+    s0.write(90);
+  }
   // Claw control
   angle4 = map(claw, 0, 4095, 0, 160);
   s4.write(angle4);
